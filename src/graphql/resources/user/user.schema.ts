@@ -5,8 +5,8 @@ const userTypes = `
         name: String!
         email: String!
         photo: String
-        createdAt: String!
-        updatedAt: String!
+        createdAt: String
+        updatedAt: String
         posts(firts: Int, offset: Int): [ Post! ]!
     }
 

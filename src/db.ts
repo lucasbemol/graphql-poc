@@ -1,4 +1,4 @@
-import { filter } from 'lodash';
+import { filter, findIndex } from 'lodash';
 
 const users = [
   {
@@ -50,20 +50,91 @@ const posts = [
     title: 'Aprendendo Jest',
     content: 'Apresentação de Jest para nosso time!',
     photo: 'photo do jest',
-    createdAt: new Date().toDateString,
-    updated: new Date().toDateString,
+    createdAt: new Date(),
+    updated: new Date(),
     author_id: 2
   }
 ]
 
+const comments = [
+  {
+    id: 1,
+    comment: 'graphql é melhor que rest',
+    createdAt: new Date(),
+    updatedAt: new Date(),
+    user_id: 2,
+    post_id: 1 
+  },
+  {
+    id: 2,
+    comment: 'com testes tudo fica melhor',
+    createdAt: new Date(),
+    updatedAt: new Date(),
+    user_id: 2,
+    post_id: 2 
+  }
+]
+
+/* USER */
 export const getAllUsers = () => users;
 
+export const createUser = (user) => {
+  users.push(user);
+}
+
+export const updateUser = (id, user) => {
+  const index = findIndex(users, function(o) { return o.id == id; });
+  users[index] = Object.assign({id}, user);;
+  return users[index];
+}
+
+export const deleteUser = (id) => {
+  const index = findIndex(users, function(o) { return o.id == id; });
+  delete users[index];
+}
+
+
+/* POST */
 export const getAllPosts = () => posts;
 
 export const getPostsByUserId = (id: number) => {
   return filter(posts, (item) => item.author_id === id);
 }
 
-export const createUser = (user) => {
+export const createPost = (post) => {
+  posts.push(post);
+}
 
+export const updatePost = (id, post) => {
+  const index = findIndex(posts, function(o) { return o.id == id; });
+  posts[index] = Object.assign({id}, post);;
+  return posts[index];
+}
+
+export const deletePost = (id) => {
+  const index = findIndex(posts, function(o) { return o.id == id; });
+  delete posts[index];
+}
+
+/* COMMENTS */
+export const getAllComments = () => posts;
+
+
+export const getCommentsByPost = (id: number) => {
+  return filter(comments, (item) => item.post_id == id);
+}
+
+export const createComment = (comment) => {
+  comments.push(comment);
+}
+
+export const updateComment = (id, comment) => {
+  const index = findIndex(comments, function(o) { return o.id == id; });
+  comments[index] = Object.assign({id}, comment);;
+  return comments[index];
+}
+
+export const deleteComment = (id) => {
+  const index = findIndex(comments, function(o) { return o.id == id; });
+  delete comments[index];
 }

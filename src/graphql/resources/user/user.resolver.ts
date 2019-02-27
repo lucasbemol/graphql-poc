@@ -19,15 +19,19 @@ export const userResolvers = {
 
     Mutation: {
         createUser: (parent, args, context, info: GraphQLResolveInfo) => {
-
+            const newUser = Object.assign({id: db.getAllUsers().length + 1,}, args.input);
+            db.createUser(newUser);
+            return newUser;
         },
 
         updateUser: (parent, args, context, info: GraphQLResolveInfo) => {
-
+            const userUpdated = db.updateUser(args.id, args.input);
+            return userUpdated;
         },
 
         deleteUser: (parent, args, context, info: GraphQLResolveInfo) => {
-
+            db.deleteUser(args.id);
+            return true;
         }
 
     }
