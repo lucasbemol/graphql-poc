@@ -1,16 +1,19 @@
 import { GraphQLResolveInfo } from "graphql";
+import * as db from "../../../db";
+
+
 
 export const userResolvers = {
 
     User: {
         posts: (parent, args, context, info: GraphQLResolveInfo) => {
-            // parent.id
+            return db.getPostsByUserId(parent.id);
         }
     },
 
     Query: {
         users: (parent, args, context, info: GraphQLResolveInfo) => {
-
+            return db.getAllUsers();
         }
     },
 
