@@ -76,7 +76,20 @@ const comments = [
 ]
 
 /* USER */
-export const getAllUsers = () => users;
+export const getAllUsers = () => {
+  console.log('getAllUsers');
+  return users;
+}
+
+export const getAllUsersByIds = (ids) => {
+  console.log('getAllUsersByIds');
+  return users.filter(user => ids.find(id => id == user.id));
+}
+
+export const getUser = (id) => {
+  console.log('getUser');
+  return users.find(user => user.id == id);
+}
 
 export const createUser = (user) => {
   users.push(user);
@@ -95,7 +108,20 @@ export const deleteUser = (id) => {
 
 
 /* POST */
-export const getAllPosts = () => posts;
+export const getAllPosts = () => {
+  console.log('getAllPosts');
+  return posts;
+}
+
+export const getAllPostsByIds = (ids) => {
+  console.log('getAllPostsByIds');
+  return posts.filter(post => ids.find(id => id == post.id));
+}
+
+export const getPost = (id) => {
+  console.log('getPost');
+  return posts.find(post => post.id == id);
+}
 
 export const getPostsByUserId = (id: number) => {
   return filter(posts, (item) => item.author_id === id);

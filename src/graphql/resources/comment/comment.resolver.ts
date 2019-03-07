@@ -7,7 +7,13 @@ export const commentResolvers = {
 
     Comment: {
         user: (parent, args, context, info: GraphQLResolveInfo) => {
-          
+            return context.dataloaders.userLoader.load(parent.user_id);
+            //   return db.getUser(parent.user_id);
+        },
+
+        post: (parent, args, context, info: GraphQLResolveInfo) => {
+            return context.dataloaders.postLoader.load(parent.post_id);
+            //   return db.getPost(parent.post_id);
         }
     },
 

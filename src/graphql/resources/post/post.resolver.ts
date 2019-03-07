@@ -8,12 +8,22 @@ export const postResolvers = {
     Post: {
         comments: (parent, args, context, info: GraphQLResolveInfo) => {
           return db.getCommentsByPost(parent.id);
+        },
+
+        author: (parent, args, context, info: GraphQLResolveInfo) => {
+          return context.dataloaders.userLoader.load(parent.author_id);
+          // return db.getUser(parent.author_id);
         }
+
     },
 
     Query: {
         posts: (parent, args, context, info: GraphQLResolveInfo) => {
             return db.getAllPosts();
+        },
+
+        post: (parent, args, context, info: GraphQLResolveInfo) => {
+          return db.getPost(args.id);
         }
     },
 
