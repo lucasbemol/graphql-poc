@@ -1,3 +1,4 @@
+import * as graphqlField from 'graphql-fields';
 import { GraphQLResolveInfo } from "graphql";
 import * as db from "../../../db";
 
@@ -13,6 +14,7 @@ export const userResolvers = {
 
     Query: {
         users: (parent, args, context, info: GraphQLResolveInfo) => {
+            console.log(graphqlField(info));
             return db.getAllUsers();
         }
     },

@@ -11,7 +11,7 @@ export const postResolvers = {
         },
 
         author: (parent, args, context, info: GraphQLResolveInfo) => {
-          return context.dataloaders.userLoader.load(parent.author_id);
+          return context.dataloaders.userLoader.load({key: parent.author_id, info});
           // return db.getUser(parent.author_id);
         }
 
